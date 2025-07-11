@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import {
   motion,
   useAnimationFrame,
@@ -7,7 +7,6 @@ import {
   useMotionValue,
   useTransform,
 } from "motion/react";
-import { useRef } from "react";
 import { cn } from "@/utils/cn";
 
 export function Button({
@@ -22,22 +21,20 @@ export function Button({
 }: {
   borderRadius?: string;
   children: React.ReactNode;
-  as?: any;
+  as?: React.ElementType;
   containerClassName?: string;
   borderClassName?: string;
   duration?: number;
   className?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }) {
   return (
     <Component
       className={cn(
         "relative h-16 w-40 overflow-hidden bg-transparent p-[1px] text-xl",
-        containerClassName,
+        containerClassName
       )}
-      style={{
-        borderRadius: borderRadius,
-      }}
+      style={{ borderRadius }}
       {...otherProps}
     >
       <div
@@ -48,7 +45,7 @@ export function Button({
           <div
             className={cn(
               "h-20 w-20 bg-[radial-gradient(#0ea5e9_40%,transparent_60%)] opacity-[0.8]",
-              borderClassName,
+              borderClassName
             )}
           />
         </MovingBorder>
@@ -56,12 +53,10 @@ export function Button({
 
       <div
         className={cn(
-          "relative flex h-full w-full items-center justify-center border border-white bg-black text-sm text-sm text-white antialiased backdrop-blur-xl",
-          className,
+          "relative flex h-full w-full items-center justify-center border border-white bg-black text-sm text-white antialiased backdrop-blur-xl",
+          className
         )}
-        style={{
-          borderRadius: `calc(${borderRadius} * 0.96)`,
-        }}
+        style={{ borderRadius: `calc(${borderRadius} * 0.96)` }}
       >
         {children}
       </div>
@@ -80,12 +75,12 @@ export const MovingBorder = ({
   duration?: number;
   rx?: string;
   ry?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }) => {
-const pathRef = useRef<SVGRectElement | null>(null);
+  const pathRef = useRef<SVGRectElement | null>(null);
   const progress = useMotionValue<number>(0);
 
-  useAnimationFrame((time) => {
+  useAnimationFrame((time: number) => {
     const length = pathRef.current?.getTotalLength();
     if (length) {
       const pxPerMillisecond = length / duration;
@@ -93,13 +88,11 @@ const pathRef = useRef<SVGRectElement | null>(null);
     }
   });
 
-  const x = useTransform(
-    progress,
-    (val) => pathRef.current?.getPointAtLength(val).x,
+  const x = useTransform(progress, (val: number) =>
+    pathRef.current?.getPointAtLength(val).x
   );
-  const y = useTransform(
-    progress,
-    (val) => pathRef.current?.getPointAtLength(val).y,
+  const y = useTransform(progress, (val: number) =>
+    pathRef.current?.getPointAtLength(val).y
   );
 
   const transform = useMotionTemplate`translateX(${x}px) translateY(${y}px) translateX(-50%) translateY(-50%)`;

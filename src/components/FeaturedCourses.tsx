@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import courseData from "../data/music_courses.json";
 import { Button } from "@/components/ui/stateful-button";
 import { BackgroundGradient } from "./ui/background-gradient";
@@ -41,7 +42,7 @@ function FeaturedCourses() {
                     {course.title}
                   </h3>
 
-                  <img
+                  <Image
                     src={course.image}
                     alt={course.title}
                     className="h-50 w-full object-cover rounded-md mb-3"
