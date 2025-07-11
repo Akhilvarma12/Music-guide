@@ -36,7 +36,10 @@ function FeaturedCourses() {
         <div className=" mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
           {featuredCourses.map((course: Course) => (
             <div key={course.id} className="flex justify-center h-full">
-              <BackgroundGradient key={course.id}  className="flex flex-col justify-between rounded-[22px] bg-white dark:bg-zinc-900 overflow-hidden max-w-sm w-full h-[370px]">
+              <BackgroundGradient
+                key={course.id}
+                className="flex flex-col justify-between rounded-[22px] bg-white dark:bg-zinc-900 overflow-hidden max-w-sm w-full h-[370px]"
+              >
                 <div className="px-4 pt-4 text-center">
                   <h3 className="text-base font-semibold text-black dark:text-white mb-2">
                     {course.title}
@@ -45,6 +48,8 @@ function FeaturedCourses() {
                   <Image
                     src={course.image}
                     alt={course.title}
+                    width={400}
+                    height={250}
                     className="h-50 w-full object-cover rounded-md mb-3"
                   />
 
