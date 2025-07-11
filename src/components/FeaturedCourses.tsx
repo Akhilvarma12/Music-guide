@@ -20,7 +20,7 @@ function FeaturedCourses() {
     (course: Course) => course.isFeatured
   );
   return (
-    <div className="py-12 bg-gray-900">
+    <div className="py-12 bg-black/100">
       <div>
         <div className="text-center">
           <h2 className="text-base text-teal-600 font-semibold tracking-wide uppercase">
@@ -35,7 +35,7 @@ function FeaturedCourses() {
         <div className=" mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
           {featuredCourses.map((course: Course) => (
             <div key={course.id} className="flex justify-center h-full">
-              <BackgroundGradient className="flex flex-col justify-between rounded-[22px] bg-white dark:bg-zinc-900 overflow-hidden max-w-sm w-full h-[370px]">
+              <BackgroundGradient key={course.id}  className="flex flex-col justify-between rounded-[22px] bg-white dark:bg-zinc-900 overflow-hidden max-w-sm w-full h-[370px]">
                 <div className="px-4 pt-4 text-center">
                   <h3 className="text-base font-semibold text-black dark:text-white mb-2">
                     {course.title}

@@ -8,27 +8,19 @@ function Navbar({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null);
 
   return (
-    <div
-      className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50", className)}
-    >
+    <div className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50", className)}>
       <Menu setActive={setActive}>
-        <Link href={"/"}>
-          <MenuItem setActive={setActive} active={active} item="Home">
-          </MenuItem>
-        </Link>
-        <MenuItem setActive={setActive} active={active} item="Courses">
-        <div className="flex flex-col space-v-4 text-sm">
-          <HoveredLink href="/courses">All Courses</HoveredLink>
-          <HoveredLink href="/courses">Basic music theory</HoveredLink>
-          <HoveredLink href="/courses">Advanced composition</HoveredLink>
-          <HoveredLink href="/courses">Song writing</HoveredLink>
-          <HoveredLink href="/courses">Music Production</HoveredLink>
-          </div>
-        </MenuItem>
-        <Link href={"/contacts"}>
-                  <MenuItem setActive={setActive} active={active} item="Contact Us">
-          </MenuItem>
-        </Link>
+        <HoveredLink href="/">
+          <MenuItem setActive={setActive} active={active} item="Home" />
+        </HoveredLink>
+
+        <HoveredLink href="/courses">
+          <MenuItem setActive={setActive} active={active} item="Courses" />
+        </HoveredLink>
+
+        <HoveredLink href="/contacts">
+          <MenuItem setActive={setActive} active={active} item="Contact Us" />
+        </HoveredLink>
       </Menu>
     </div>
   );
